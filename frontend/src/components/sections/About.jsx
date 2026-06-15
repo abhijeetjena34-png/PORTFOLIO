@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import profilePic from "../../assets/profile.jpg";
 
 export function About() {
   return (
@@ -37,7 +38,7 @@ export function About() {
                 
                 <div className="relative w-full max-w-[400px] aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 glass">
                   <img
-                    src="/src/assets/profile.jpg" // The path where user should save their pic
+                    src={profilePic} // Uses the imported image asset
                     alt="Abhijeet Jena"
                     className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-500"
                     onError={(e) => {

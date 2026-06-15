@@ -11,6 +11,7 @@ const envOrigins = process.env.CLIENT_URLS
     ? [process.env.CLIENT_URL.trim()]
     : [];
 const allowedOrigins = [...new Set([...defaultAllowedOrigins, ...envOrigins])];
+console.log("Allowed CORS origins:", allowedOrigins);
 
 app.use(
   cors({

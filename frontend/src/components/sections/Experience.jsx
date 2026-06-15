@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import { Briefcase, GraduationCap } from "lucide-react";
+import {  GraduationCap } from "lucide-react";
 
 const EXPERIENCES = [
   {
     title: "Master in Computer Applications (MCA)",
     company: "Completed",
     date: "2024 - 2026",
-    description: "Deep-diving into advanced software engineering, full-stack development. Building a strong foundation in computer science principles and modern frameworks.",
+    description: "Deep-diving into advanced software engineering and full-stack development. Building a strong foundation in computer science principles and modern frameworks.",
     icon: <GraduationCap size={20} />,
     type: "education"
   },
