@@ -2,70 +2,70 @@
 
 A clean, modern, responsive portfolio for freelance client work, built with:
 
-- Frontend: React + Vite + Tailwind CSS
-- Backend: Node.js + Express.js + MongoDB
+- **Frontend**: React + Vite + Tailwind CSS
+- **Backend (Local)**: Node.js + Express.js
+- **Backend (Production)**: Vercel Serverless Functions
+- **Database**: MongoDB Atlas
+- **Email Delivery**: Nodemailer + Gmail SMTP
 
 ## Folder Structure
 
 ```text
 PORTFOLIO/
-├── backend/
+├── api/                   # Vercel Serverless Functions (Production Backend)
+│   └── contact.js         # API route for handling contact form in production
+├── backend/               # Local Development Express Server
 │   ├── src/
-│   │   ├── config/
-│   │   ├── controllers/
-│   │   ├── models/
-│   │   ├── routes/
-│   │   ├── app.js
-│   │   └── server.js
-│   ├── .env.example
+│   ├── .env               # Local env file (MongoDB & SMTP config)
 │   └── package.json
-├── frontend/
+├── frontend/              # React Vite Frontend App
 │   ├── src/
-│   │   ├── api/
-│   │   ├── components/
-│   │   ├── data/
-│   │   ├── pages/
-│   │   ├── styles/
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   ├── .env.example
-│   ├── index.html
-│   ├── package.json
-│   ├── postcss.config.js
-│   ├── tailwind.config.js
-│   └── vite.config.js
+│   ├── .env               # Frontend env (VITE_API_URL)
+│   └── package.json
+├── package.json           # Root package.json (Vercel dependencies)
+├── vercel.json            # Vercel build & route configuration
 └── README.md
 ```
 
-## Setup
+## How to Run Locally
 
-### 1) Backend
+### 1) Backend (Local Express Server)
 
 ```bash
 cd backend
 npm install
-cp .env.example .env
 npm run dev
 ```
+Make sure you have a `backend/.env` file containing your MongoDB Atlas connection string and SMTP details. The server runs on `http://localhost:5000`.
 
 ### 2) Frontend
 
 ```bash
 cd frontend
 npm install
-cp .env.example .env
 npm run dev
 ```
+Ensure your `frontend/.env` has `VITE_API_URL=http://localhost:5000` for local development.
 
-## API
+## Production Deployment (Vercel)
 
-- `POST /api/contact` - submit contact form
-- `GET /api/health` - health check
+This project is configured for **zero-config deployment on Vercel**. 
 
-## Notes
+Vercel will automatically build the `frontend` directory for the static UI and use the `api/` directory at the root to host Serverless Functions (like the contact form handler).
 
-- Update placeholder personal details and project links in `frontend/src/data/portfolioData.js`.
-- Make sure MongoDB is running and `MONGO_URI` is set correctly.
+### Environment Variables on Vercel
+When deploying to Vercel, make sure to add the following variables in the **Settings -> Environment Variables** section of your Vercel Dashboard:
+
+| Key | Example Value |
+| :--- | :--- |
+| `MONGO_URI` | `mongodb+srv://<user>:<password>@cluster0...` |
+| `SMTP_HOST` | `smtp.gmail.com` |
+| `SMTP_PORT` | `587` |
+| `SMTP_USER` | `your-email@gmail.com` |
+| `SMTP_PASS` | `your-app-password` |
+| `CONTACT_RECEIVER_EMAIL` | `your-email@gmail.com` |
+
+*(Note: In production on Vercel, leave `VITE_API_URL` empty in your frontend `.env` so it uses relative paths for the API.)*
 
 ## About Me
 
