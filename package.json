@@ -1,0 +1,9 @@
+{
+  "name": "portfolio-monorepo",
+  "private": true,
+  "description": "Portfolio with Vercel serverless API",
+  "dependencies": {
+    "mongoose": "^8.6.1",
+    "nodemailer": "^8.0.5"
+  }
+}
